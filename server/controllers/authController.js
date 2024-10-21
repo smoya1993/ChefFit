@@ -14,6 +14,7 @@ const register = async (req, res, next) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword);
     const user = await User({
       ...req.body,
       password: hashedPassword,
@@ -36,6 +37,7 @@ const login = async (req, res, next) => {
     }
 
     const foundUser = await User.findOne({ email });
+    console.log(foundUser);
     if (!foundUser) {
       return res.status(401).json({ message: "Unauthorized" });
     }

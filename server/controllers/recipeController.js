@@ -50,6 +50,7 @@ const addRecipe = async (req, res, next) => {
       return res.status(422).json({ message: "Insufficient data" });
     }
     const recipe = Recipe({ ...req.body, author: req.user });
+
     await recipe.save();
     res.status(201).json({ success: "Recipe added successfully" });
   } catch (error) {
