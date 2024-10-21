@@ -14,13 +14,12 @@ const register = async (req, res, next) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
-    const user = await User({
+    const user = new User({
       ...req.body,
       password: hashedPassword,
     });
 
-    const result = user.save();
+    await user.save();
     res.status(201).json({ success: "User registered successfully" });
   } catch (error) {
     next(error);
@@ -31,13 +30,10 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
+      return res.status(400).json({ message: "Email and password are required" });
     }
 
     const foundUser = await User.findOne({ email });
-    console.log(foundUser);
     if (!foundUser) {
       return res.status(401).json({ message: "Unauthorized" });
     }
@@ -46,7 +42,6 @@ const login = async (req, res, next) => {
     }
 
     const match = await bcrypt.compare(password, foundUser.password);
-
     if (!match) {
       return res.status(401).json({ message: "Unauthorized" });
     }
@@ -75,7 +70,7 @@ const login = async (req, res, next) => {
     );
 
     foundUser.refreshToken = refreshToken;
-    const result = await foundUser.save();
+    await foundUser.save();
 
     res.cookie("jwt", refreshToken, {
       httpOnly: true,

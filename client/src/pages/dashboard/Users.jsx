@@ -23,7 +23,6 @@ const Users = () => {
   const handleDisable = (_id) => {
     disableUser(_id);
   };
-  console.log(data);
   useEffect(() => {
     if (!isLoading) {
       dispatch(setUsers(data));

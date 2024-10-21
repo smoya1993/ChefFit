@@ -30,5 +30,6 @@ const schema = mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", schema);
+// Cambia el nombre de la colección aquí
+const User = mongoose.model("User", schema, "recipen_users");
 module.exports = User;

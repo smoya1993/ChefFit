@@ -9,9 +9,7 @@ const schema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    description: {
-      type: String,
-    },
+    description: { type: String },
     image: { type: String },
     ratings: [
       {
@@ -40,5 +38,6 @@ const schema = mongoose.Schema(
   }
 );
 
-const Blog = mongoose.model("Blog", schema);
+// Cambia el nombre de la colección aquí
+const Blog = mongoose.model("Blog", schema, "recipen_blogs");
 module.exports = Blog;

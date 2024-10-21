@@ -48,15 +48,15 @@ const updateBlog = async (req, res, next) => {
     const foundBlog = await Blog.findById(req.params.id);
     if (!foundBlog) return res.status(404).json({ message: "Blog not found" });
 
-    if (foundBlog.author !== req.user)
+    if (foundBlog.author.toString() !== req.user) {
       return res.status(401).json({ message: "Unauthorized" });
+    }
 
     foundBlog.title = title;
     foundBlog.image = image;
     foundBlog.description = description;
 
     const updatedBlog = await foundBlog.save();
-
     return res.status(201).json(updatedBlog);
   } catch (error) {
     next(error);

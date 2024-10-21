@@ -42,5 +42,6 @@ const schema = mongoose.Schema(
   }
 );
 
-const Recipe = mongoose.model("Recipe", schema);
+// Cambia el nombre de la colección aquí
+const Recipe = mongoose.model("Recipe", schema, "recipen_recipes");
 module.exports = Recipe;
