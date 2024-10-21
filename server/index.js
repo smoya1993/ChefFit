@@ -11,6 +11,9 @@ const connectDB = require("./db/conn");
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Configurar trust proxy para confiar en proxies y balanceadores de carga (como Render)
+app.set('trust proxy', true);
+
 // cors middleware
 app.use(credentials);
 app.use(cors(corsOptions));
