@@ -59,6 +59,7 @@ const Menu = ({ isCollapsed, setIsCollapsed, user }) => {
                 Blogs
               </NavLink>
             </li>
+            {/* 
             <li>
               <NavLink
                 to={"/contact"}
@@ -68,6 +69,7 @@ const Menu = ({ isCollapsed, setIsCollapsed, user }) => {
                 Contact
               </NavLink>
             </li>
+            */}
             {!user && (
               <li className="w-full">
                 <Link
