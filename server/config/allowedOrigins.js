@@ -1,6 +1,6 @@
 const allowedOrigins = [
-  "https://recipen.vercel.app",
-  "https://recipen-backend.onrender.com",
+  "https://cheffit.netlify.app/",
+  "https://cheffit.onrender.com",
   "http://localhost:5173"
 ];
 
