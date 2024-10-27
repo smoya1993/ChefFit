@@ -73,6 +73,13 @@ const EditRecipe = () => {
     setIngredient("");
   };
 
+  const removeIngredient = (ingredientToRemove) => {
+    const updatedIngredients = formDetails.ingredients.filter(
+      (ingredient) => ingredient !== ingredientToRemove
+    );
+    setFormDetails({ ...formDetails, ingredients: updatedIngredients });
+  };
+
   const addInstruction = () => {
     if (!instruction) {
       return toast.error("Instruction cannot be empty");
@@ -81,6 +88,13 @@ const EditRecipe = () => {
     updatedFormDetails.instructions.push(instruction);
     setFormDetails(updatedFormDetails);
     setInstruction("");
+  };
+
+  const removeInstruction = (instructionToRemove) => {
+    const updatedInstructions = formDetails.instructions.filter(
+      (instruction) => instruction !== instructionToRemove
+    );
+    setFormDetails({ ...formDetails, instructions: updatedInstructions });
   };
 
   const handleSubmit = async (e) => {
@@ -273,7 +287,7 @@ const EditRecipe = () => {
                         key={ele}
                       >
                         {ele}
-                        <RxCross2 className="cursor-pointer" />
+                        <RxCross2 className="cursor-pointer" onClick={() => removeIngredient(ele)} />
                       </li>
                     ))}
                   </ul>
@@ -318,12 +332,10 @@ const EditRecipe = () => {
                         <h3 className="font-bold">Step {i + 1}</h3>
                         <p className="text-sm text-gray-700">{ele}</p>
                       </div>
-                      <div>
-                        <RxCross2
-                          className="cursor-pointer"
-                          size={20}
-                        />
-                      </div>
+                      <RxCross2
+                        className="cursor-pointer"
+                        onClick={() => removeInstruction(ele)}
+                      />
                     </li>
                   ))}
                 </ul>

@@ -102,6 +102,20 @@ const AddRecipe = () => {
     }
   };
 
+  const removeIngredient = (ingredientToRemove) => {
+    const updatedIngredients = formDetails.ingredients.filter(
+      (ingredient) => ingredient !== ingredientToRemove
+    );
+    setFormDetails({ ...formDetails, ingredients: updatedIngredients });
+  };
+
+  const removeInstruction = (instructionToRemove) => {
+    const updatedInstructions = formDetails.instructions.filter(
+      (instruction) => instruction !== instructionToRemove
+    );
+    setFormDetails({ ...formDetails, instructions: updatedInstructions });
+  };
+
   return (
     <section className="box flex flex-col gap-6">
       <h2 className="font-bold text-xl">Add New Recipe</h2>
@@ -265,7 +279,7 @@ const AddRecipe = () => {
                       key={ele}
                     >
                       {ele}
-                      <RxCross2 className="cursor-pointer" />
+                      <RxCross2 className="cursor-pointer" onClick={() => removeIngredient(ele)} />
                     </li>
                   ))}
                 </ul>
@@ -310,12 +324,10 @@ const AddRecipe = () => {
                       <h3 className="font-bold">Step {i + 1}</h3>
                       <p className="text-sm text-gray-700">{ele}</p>
                     </div>
-                    <div>
-                      <RxCross2
+                    <RxCross2
                         className="cursor-pointer"
-                        size={20}
+                        onClick={() => removeInstruction(ele)}
                       />
-                    </div>
                   </li>
                 ))}
               </ul>
