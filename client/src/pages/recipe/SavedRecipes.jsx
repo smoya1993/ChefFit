@@ -17,9 +17,9 @@ const index = () => {
         <ComponentLoading />
       ) : (
         <AllCards
-          mainTitle={"Your Flavorful Collection"}
+          mainTitle={"Tu Colección Sabrosa"}
           tagline={
-            "Welcome to your personal culinary treasury - a haven for your favorite recipes!"
+            "¡Bienvenido a tu tesoro culinario personal - un refugio para tus recetas favoritas!"
           }
           type={"recipe"}
           data={updatedData}

@@ -9,7 +9,7 @@ import { useAddRecipeMutation } from "../../features/recipe/recipeApiSlice";
 import useTitle from "../../hooks/useTitle";
 
 const AddRecipe = () => {
-  useTitle("Recipen - Add Recipe");
+  useTitle("Cheffit - Add Recipe");
 
   const [formDetails, setFormDetails] = useState({
     title: "",
@@ -45,7 +45,7 @@ const AddRecipe = () => {
 
   const addIngredient = () => {
     if (!ingredient) {
-      return toast.error("Ingredient cannot be empty");
+      return toast.error("Los ingredientes no pueden estar vacíos");
     }
     const updatedFormDetails = { ...formDetails };
     updatedFormDetails.ingredients.push(ingredient);
@@ -70,15 +70,15 @@ const AddRecipe = () => {
     if (!formDetails.ingredients.length)
       return toast.error("Ingredients cannot be empty");
     if (!formDetails.instructions.length)
-      return toast.error("Instructions cannot be empty");
+      return toast.error("Las instrucciones no pueden estar vacías");
 
     try {
       const recipe = await toast.promise(
         addRecipe({ ...formDetails }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Recipe added successfully",
-          error: "Unable to add recipe",
+          pending: "Por favor espera...",
+          success: "Receta agregada con éxito",
+          error: "No se pudo agregar la receta",
         }
       );
       setFormDetails({
@@ -118,7 +118,7 @@ const AddRecipe = () => {
 
   return (
     <section className="box flex flex-col gap-6">
-      <h2 className="font-bold text-xl">Add New Recipe</h2>
+      <h2 className="font-bold text-xl">Agregar nueva receta</h2>
       <hr />
       <form
         className="flex flex-col-reverse md:flex-row gap-4 mt-10 justify-around"
@@ -130,7 +130,7 @@ const AddRecipe = () => {
               htmlFor="title"
               className="text-sm font-semibold mb-3 basis-1/2"
             >
-              Recipe name
+              Nombre de la receta
             </label>
             <div className="flex flex-col basis-1/2">
               <input
@@ -145,14 +145,14 @@ const AddRecipe = () => {
                 required
                 aria-required="true"
                 aria-describedby="title-error"
-                placeholder="Enter recipe name"
+                placeholder="Ingrese el nombre de la receta"
                 className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary"
               />
               <span
                 id="title-error"
                 className="hidden text-red-500 pl-2 text-sm mt-1"
               >
-                Name should at least 3 characters long
+                El nombre debe tener al menos 3 caracteres
               </span>
             </div>
           </div>
@@ -162,7 +162,7 @@ const AddRecipe = () => {
               htmlFor="description"
               className="text-sm font-semibold mb-3 basis-1/2"
             >
-              Recipe description
+              Descripción de la receta
             </label>
             <div className="flex flex-col basis-1/2">
               <textarea
@@ -174,7 +174,7 @@ const AddRecipe = () => {
                 name="description"
                 rows="5"
                 aria-required="true"
-                placeholder="Enter your description here..."
+                placeholder="Ingrese su descripción aquí..."
                 className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary w-full resize-none"
               ></textarea>
             </div>
@@ -185,7 +185,7 @@ const AddRecipe = () => {
               htmlFor="calories"
               className="text-sm font-semibold mb-3 basis-1/2"
             >
-              Total calories
+              Total de calorías
             </label>
             <div className="flex flex-col basis-1/2">
               <input
@@ -199,14 +199,14 @@ const AddRecipe = () => {
                 focused={focused.calories.toString()}
                 aria-required="true"
                 aria-describedby="calories-error"
-                placeholder="Enter total calories"
+                placeholder="Ingrese las calorías totales"
                 className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary"
               />
               <span
                 id="calories-error"
                 className="hidden text-red-500 pl-2 text-sm mt-1"
               >
-                Should not include letters or special characters
+                No debe incluir letras ni caracteres especiales
               </span>
             </div>
           </div>
@@ -216,7 +216,7 @@ const AddRecipe = () => {
               htmlFor="cookingTime"
               className="text-sm font-semibold mb-3 basis-1/2"
             >
-              Cooking time
+              Tiempo de cocción
             </label>
             <div className="flex flex-col basis-1/2">
               <input
@@ -230,14 +230,14 @@ const AddRecipe = () => {
                 focused={focused.cookingTime.toString()}
                 aria-required="true"
                 aria-describedby="cookingTime-error"
-                placeholder="Total cooking time in mins."
+                placeholder="Tiempo total de cocción en minutos."
                 className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary"
               />
               <span
                 id="cookingTime-error"
                 className="hidden text-red-500 pl-2 text-sm mt-1"
               >
-                Must only include numbers
+                Solo debe incluir números
               </span>
             </div>
           </div>
@@ -247,7 +247,7 @@ const AddRecipe = () => {
               htmlFor="ingredient"
               className="text-sm font-semibold mb-3 basis-1/2"
             >
-              Add ingredients
+              Agregar ingredientes
             </label>
             <div className="flex flex-col basis-1/2">
               <div className="flex flex-col gap-2">
@@ -263,11 +263,11 @@ const AddRecipe = () => {
                     pattern={"^.{3,}$"}
                     aria-required="true"
                     aria-describedby="ingredient-error"
-                    placeholder="2 medium onion"
+                    placeholder="2 cebollas medianas"
                     className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary w-full"
                   />
                   <Button
-                    content={"Add"}
+                    content={"Agregar"}
                     customCss={"rounded text-sm px-4 py-1"}
                     handleClick={addIngredient}
                   />
@@ -293,10 +293,10 @@ const AddRecipe = () => {
                 htmlFor="instruction"
                 className="text-sm font-semibold mb-3 basis-1/2"
               >
-                Add Steps
+                Agregar pasos
               </label>
               <Button
-                content={"Add"}
+                content={"Agregar"}
                 customCss={"rounded text-sm px-4 py-1"}
                 handleClick={addInstruction}
               />
@@ -310,10 +310,10 @@ const AddRecipe = () => {
                 name="instruction"
                 rows="7"
                 aria-required="true"
-                placeholder="Write your steps here..."
+                placeholder="Escriba sus pasos aquí..."
                 className="p-1.5 border bg-gray-100 rounded focus:outline outline-primary w-full resize-none"
               ></textarea>
-              {/* All added instructions */}
+              {/* Todas las instrucciones añadidas */}
               <ul className="flex flex-col gap-2">
                 {formDetails.instructions.map((ele, i) => (
                   <li
@@ -321,7 +321,7 @@ const AddRecipe = () => {
                     key={`step-${i}`}
                   >
                     <div className="flex flex-col">
-                      <h3 className="font-bold">Step {i + 1}</h3>
+                      <h3 className="font-bold">Paso {i + 1}</h3>
                       <p className="text-sm text-gray-700">{ele}</p>
                     </div>
                     <RxCross2
@@ -334,14 +334,14 @@ const AddRecipe = () => {
             </div>
           </div>
           <Button
-            content={"Add recipe"}
+            content={"Agregar receta"}
             type={"submit"}
             customCss={"rounded px-4 py-1 max-w-max"}
             loading={isLoading}
           />
         </div>
         <hr className="block md:hidden mt-6" />
-        {/* Upload recipe image */}
+        {/* Subir imagen de la receta */}
         <div className="basis-1/3 rounded-xl shadow-md hover:shadow-primary hover:shadow flex justify-center items-center w-full p-8 max-h-[300px]">
           <label
             htmlFor="image"
@@ -359,14 +359,14 @@ const AddRecipe = () => {
               ) : (
                 <img
                   src={formDetails.image || photo}
-                  alt="upload photo"
+                  alt="subir foto"
                   className="w-full "
                 />
               )}
             </div>
             <p className="text-center">
-              Drag your image here, or
-              <span className="text-primary"> browse</span>
+              Arrastra tu imagen aquí, o
+              <span className="text-primary"> busca</span>
             </p>
           </label>
           <input

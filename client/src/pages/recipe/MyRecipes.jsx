@@ -7,7 +7,7 @@ import useTitle from "../../hooks/useTitle";
 const index = () => {
   const { data, isLoading } = useGetRecipesQuery();
   const user = useAuth();
-  useTitle("Recipen - My Recipes");
+  useTitle("Cheffit - Mis Recetas");
 
   const updatedData = data?.filter((obj) => obj.author._id === user?.userId);
 
@@ -17,9 +17,9 @@ const index = () => {
         <ComponentLoading />
       ) : (
         <AllCards
-          mainTitle={"Your Original Creations"}
+          mainTitle={"Tus Creaciones Originales"}
           tagline={
-            "Welcome to your dedicated space where your imagination takes the lead."
+            "Bienvenido a tu espacio dedicado donde tu imaginación toma el control."
           }
           type={"recipe"}
           data={updatedData}

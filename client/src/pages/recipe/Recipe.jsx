@@ -8,7 +8,7 @@ import useTitle from "../../hooks/useTitle";
 const Recipe = () => {
   const { data, isLoading } = useGetRecipesQuery();
   const dispatch = useDispatch();
-  useTitle("Recipen - All Recipes");
+  useTitle("Cheffit - Todas las Recetas");
 
   useEffect(() => {
     if (!isLoading) {
@@ -22,9 +22,9 @@ const Recipe = () => {
         <ComponentLoading />
       ) : (
         <AllCards
-          mainTitle={"Discover Flavorful Creations"}
+          mainTitle={"Descubre Creaciones Sabrosas"}
           tagline={
-            "Delight in a diverse collection of mouthwatering recipes, curated and shared by passionate food enthusiasts."
+            "Disfruta de una diversa colección de recetas deliciosas, curadas y compartidas por entusiastas apasionados de la comida."
           }
           type={"recipe"}
           data={data}

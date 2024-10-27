@@ -30,15 +30,15 @@ const SingleCard = ({ singleData, type }) => {
   const handleToggleFavorite = async () => {
     try {
       if (!user) {
-        toast.error("You must sign in first");
+        toast.error("Debes iniciar sesión primero");
         return navigate("/auth/signin");
       }
       const userData = await toast.promise(
         toggleFavorite({ recipeId: singleData._id }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Favorites updated",
-          error: "Unable to update favorites",
+          pending: "Por favor espera...",
+          success: "Favoritos actualizados",
+          error: "No se pudo actualizar los favoritos",
         }
       );
       dispatch(setCredentials({ ...userData }));
@@ -110,7 +110,7 @@ const SingleCard = ({ singleData, type }) => {
         to={`/${type}/${singleData?._id}`}
         className="flex gap-2 items-center p-4 mt-4 max-w-max hover:border-primary hover:text-primary"
       >
-        Read more
+        Leer más
         <BsArrowUpRight />
       </Link>
     </div>

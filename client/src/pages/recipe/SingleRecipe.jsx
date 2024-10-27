@@ -31,7 +31,7 @@ import useAuth from "../../hooks/useAuth";
 import useTitle from "../../hooks/useTitle";
 
 const SingleRecipe = () => {
-  useTitle("Recipen - Recipe");
+  useTitle("Cheffit - Receta");
 
   const user = useAuth();
   const [rating, setRating] = useState(0);
@@ -68,16 +68,16 @@ const SingleRecipe = () => {
   const handleRating = async (event, newValue) => {
     try {
       if (!user) {
-        toast.error("You must sign in first");
+        toast.error("Debes iniciar sesión primero");
         return navigate("/auth/signin");
       }
       setRating(newValue);
       await toast.promise(
         rateRecipe({ rating: newValue, recipeId: id }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Rating added successfully",
-          error: "You have already rating this recipe",
+          pending: "Por favor espera...",
+          success: "Calificación agregada con éxito",
+          error: "Ya has calificado esta receta",
         }
       );
     } catch (error) {
@@ -89,16 +89,16 @@ const SingleRecipe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      toast.error("You must sign in first");
+      toast.error("Debes iniciar sesión primero");
       return navigate("/auth/signin");
     }
     try {
       await toast.promise(
         commentRecipe({ recipeId: id, comment: formDetails.message }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Comment added",
-          error: "Could not add comment",
+          pending: "Por favor espera...",
+          success: "Comentario agregado",
+          error: "No se pudo agregar el comentario",
         }
       );
       setFormDetails({ ...formDetails, message: "" });
@@ -113,9 +113,9 @@ const SingleRecipe = () => {
       await toast.promise(
         deleteComment({ recipeId: id, commentId: _id }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Comment deleted",
-          error: "Could not delete comment",
+          pending: "Por favor espera...",
+          success: "Comentario eliminado",
+          error: "No se pudo eliminar el comentario",
         }
       );
     } catch (error) {
@@ -127,16 +127,16 @@ const SingleRecipe = () => {
   const handleToggleFavorite = async () => {
     try {
       if (!user) {
-        toast.error("You must sign in first");
+        toast.error("Debes iniciar sesión primero");
         return navigate("/auth/signin");
       }
 
       const userData = await toast.promise(
         toggleFavorite({ recipeId: id }).unwrap(),
         {
-          pending: "Please wait...",
-          success: "Favorites updated",
-          error: "Unable to update favorites",
+          pending: "Por favor espera...",
+          success: "Favoritos actualizados",
+          error: "No se pudo actualizar los favoritos",
         }
       );
       dispatch(setCredentials({ ...userData }));
@@ -155,7 +155,7 @@ const SingleRecipe = () => {
   };
 
   const handleMenuDelete = () => {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm("¿Estás seguro de que quieres eliminar?")) {
       deleteRecipe(data?._id);
       navigate("/recipe");
     }
@@ -204,9 +204,9 @@ const SingleRecipe = () => {
                       onClose={handleMenuClose}
                     >
                       <MenuItem>
-                        <Link to={`/recipe/edit/${id}`}>Edit</Link>
+                        <Link to={`/recipe/edit/${id}`}>Editar</Link>
                       </MenuItem>
-                      <MenuItem onClick={handleMenuDelete}>Delete</MenuItem>
+                      <MenuItem onClick={handleMenuDelete}>Eliminar</MenuItem>
                     </Menu>
                   </>
                 )}
@@ -245,13 +245,13 @@ const SingleRecipe = () => {
                 <div className="flex flex-col gap-1 items-center">
                   <BsStopwatch className="text-5xl text-gray-800" />
                   <h3 className="font-bold text-xl text-primary">
-                    Cooking Time
+                    Tiempo de cocción
                   </h3>
-                  <p>{data?.cookingTime} minutes</p>
+                  <p>{data?.cookingTime} minutos</p>
                 </div>
                 <div className="flex flex-col gap-1 items-center text-gray-800">
                   <LiaWeightSolid className="text-5xl" />
-                  <h3 className="font-bold text-xl text-primary">Calories</h3>
+                  <h3 className="font-bold text-xl text-primary">Calorías</h3>
                   <p>{data?.calories} cal</p>
                 </div>
               </div>
@@ -261,7 +261,7 @@ const SingleRecipe = () => {
           <div className="flex flex-col md:flex-row gap-4">
             {/* Recipe Ingredients */}
             <div className="basis-1/3 flex flex-col gap-4 border-b-2 md:border-b-0 pb-4 md:pb-0 md:border-r-2 border-gray-200 items-center">
-              <h3 className="font-bold text-2xl">Ingredients</h3>
+              <h3 className="font-bold text-2xl">Ingredientes</h3>
               <ol className="flex flex-col gap-2 list-decimal ml-5">
                 {data?.ingredients?.map((ingredient, i) => (
                   <li key={`ingredient-${i + 1}`}>{ingredient}</li>
@@ -270,11 +270,11 @@ const SingleRecipe = () => {
             </div>
             {/* Recipe Instructions */}
             <div className="basis-2/3 flex flex-col gap-4">
-              <h3 className="font-bold text-2xl">Instructions</h3>
+              <h3 className="font-bold text-2xl">Instrucciones</h3>
               <ul className="ml-2 flex flex-col gap-4">
                 {data?.instructions?.map((instruction, i) => (
                   <li key={`instruction-${i + 1}`}>
-                    <h4 className="font-bold text-xl">Step {i + 1}</h4>
+                    <h4 className="font-bold text-xl">Paso {i + 1}</h4>
                     <p className="ml-2">{instruction}</p>
                   </li>
                 ))}
@@ -286,7 +286,7 @@ const SingleRecipe = () => {
           {!data?.ratings?.some((obj) => obj.user === user?.userId) && (
             <>
               <div className="my-6 w-full sm:w-2/3 md:w-1/2 mx-auto flex justify-between gap-6">
-                <h3 className="font-bold text-2xl">Rate the recipe</h3>
+                <h3 className="font-bold text-2xl">Califica la receta</h3>
                 <Rating
                   size={"large"}
                   precision={0.25}
@@ -299,7 +299,7 @@ const SingleRecipe = () => {
           )}
           {/* Recipe comment form */}
           <div className="my-10 w-full sm:w-2/3 md:w-1/2 mx-auto flex flex-col gap-6">
-            <h3 className="font-bold text-2xl">Leave a Reply</h3>
+            <h3 className="font-bold text-2xl">Deja una respuesta</h3>
             <form
               className="flex flex-col gap-4"
               onSubmit={handleSubmit}
@@ -310,7 +310,7 @@ const SingleRecipe = () => {
                 icon={<AiOutlineUser />}
                 handleChange={handleChange}
                 value={formDetails.name}
-                label={"Name"}
+                label={"Nombre"}
                 placeholder={"John Doe"}
               />
               <Input
@@ -319,15 +319,15 @@ const SingleRecipe = () => {
                 icon={<IoMailOutline />}
                 handleChange={handleChange}
                 value={formDetails.email}
-                label={"Email"}
-                placeholder={"example@abc.com"}
+                label={"Correo electrónico"}
+                placeholder={"ejemplo@abc.com"}
               />
               <div className="flex flex-col relative ">
                 <label
                   htmlFor="message"
                   className="text-sm font-semibold mb-3"
                 >
-                  Comment
+                  Comentario
                 </label>
                 <textarea
                   onChange={handleChange}
@@ -336,12 +336,12 @@ const SingleRecipe = () => {
                   rows={4}
                   required
                   aria-required="true"
-                  placeholder="Leave a comment..."
+                  placeholder="Deja un comentario..."
                   className="py-2 px-4 border bg-gray-100 rounded-lg focus:outline outline-primary"
                 />
               </div>
               <Button
-                content={"Post comment"}
+                content={"Publicar comentario"}
                 icon={<FaRegPaperPlane />}
                 type={"submit"}
                 customCss={"rounded-lg gap-3 max-w-max"}
@@ -352,7 +352,7 @@ const SingleRecipe = () => {
           <hr />
           {/* Recipe comments */}
           <div className="w-full sm:w-4/5 mx-auto flex flex-col gap-6">
-            <h3 className="font-bold text-2xl">Comments</h3>
+            <h3 className="font-bold text-2xl">Comentarios</h3>
             {data?.comments?.length ? (
               <div className="flex flex-col gap-6">
                 {data?.comments?.map((comment) => (
@@ -365,7 +365,7 @@ const SingleRecipe = () => {
                 ))}
               </div>
             ) : (
-              <NoData text={"Comments"} />
+              <NoData text={"Comentarios"} />
             )}
           </div>
         </section>

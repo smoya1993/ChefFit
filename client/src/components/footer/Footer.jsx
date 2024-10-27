@@ -17,39 +17,38 @@ const Footer = () => {
         <div className="basis-1/2 flex flex-col gap-6 items-center md:items-start text-center md:text-start">
           <Logo />
           <p>
-            Your culinary haven for sharing and savoring. Explore recipes,
-            restaurants, and engaging discussions. Join us now and indulge in
-            flavor-filled experiences!"
+            Tu refugio culinario para compartir y saborear. Explora recetas,
+            restaurantes y discusiones interesantes. ¡Únete a nosotros ahora y disfruta de experiencias llenas de sabor!
           </p>
         </div>
         {/* Footer top right */}
         <div className="flex gap-10 basis-1/2 justify-center md:justify-end flex-wrap md:flex-nowrap">
           {/* Footer links */}
           <ul className="flex flex-col gap-2 font-semibold mx-8 items-center md:items-start">
-            <li className="text-gray-700 text-sm text-bold mb-2">Product</li>
+            <li className="text-gray-700 text-sm text-bold mb-2">Producto</li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Home</Link>
+              <Link>Inicio</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
               <Link>Blog</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Recipes</Link>
+              <Link>Recetas</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Contact</Link>
+              <Link>Contacto</Link>
             </motion.li>
           </ul>
           <ul className="flex flex-col gap-2 font-semibold mx-8 items-center md:items-start">
-            <li className="text-gray-700 text-sm text-bold mb-2">Company</li>
+            <li className="text-gray-700 text-sm text-bold mb-2">Compañía</li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>About</Link>
+              <Link>Acerca de</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Careers</Link>
+              <Link>Carreras</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>News</Link>
+              <Link>Noticias</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
               <Link>Newsletter</Link>
@@ -58,13 +57,13 @@ const Footer = () => {
           <ul className="flex flex-col gap-2 font-semibold mx-8 items-center md:items-start">
             <li className="text-gray-700 text-sm text-bold mb-2">Legal</li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Terms</Link>
+              <Link>Términos</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Privacy</Link>
+              <Link>Privacidad</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
-              <Link>Licenses</Link>
+              <Link>Licencias</Link>
             </motion.li>
             <motion.li whileHover={{ x: 5 }}>
               <Link>Cookies</Link>
@@ -75,7 +74,7 @@ const Footer = () => {
       {/* Footer bottom */}
       <div className="box flex justify-center sm:justify-between flex-col sm:flex-row w-full gap-4">
         <p className="text-sm text-center">
-          &copy; {new Date().getFullYear()} Recipen. All rights reserved
+          &copy; {new Date().getFullYear()} Cheffit. Todos los derechos reservados
         </p>
         {/* Footer social links */}
         <ul className="flex justify-center gap-6 text-xl">
@@ -84,8 +83,8 @@ const Footer = () => {
             whileHover={{ y: -4 }}
           >
             <a
-              href="https://github.com/Avinash905"
-              aria-label="Follow me on github"
+              href="https://github.com"
+              aria-label="Sígueme en github"
             >
               <AiFillGithub />
             </a>
@@ -95,8 +94,8 @@ const Footer = () => {
             whileHover={{ y: -4 }}
           >
             <a
-              href="https://twitter.com/avinashdunna"
-              aria-label="Follow me on twitter"
+              href="https://twitter.com"
+              aria-label="Sígueme en twitter"
             >
               <AiFillTwitterCircle />
             </a>
@@ -106,8 +105,8 @@ const Footer = () => {
             whileHover={{ y: -4 }}
           >
             <a
-              href="https://www.linkedin.com/in/dunna-avinash"
-              aria-label="Follow me on linkedin"
+              href="https://www.linkedin.com"
+              aria-label="Sígueme en linkedin"
             >
               <AiFillLinkedin />
             </a>

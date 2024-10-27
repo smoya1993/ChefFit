@@ -21,7 +21,7 @@ const Header = () => {
                 to={"/"}
                 className="relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center font-semibold text-gray-600"
               >
-                Home
+                Inicio
               </NavLink>
             </li>
             {user && user?.isAdmin && (
@@ -39,7 +39,7 @@ const Header = () => {
                 to={"/recipe"}
                 className="relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center font-semibold text-gray-600"
               >
-                Recipes
+                Recetas
               </NavLink>
             </li>
             <li>
@@ -55,7 +55,7 @@ const Header = () => {
                 to={"/contact"}
                 className="relative w-fit block after:block after:content-[''] after:absolute after:h-[2px] after:bg-primary after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center font-semibold text-gray-600"
               >
-                Contact
+                Contacto
               </NavLink>
             </li>
           </ul>
@@ -69,7 +69,7 @@ const Header = () => {
             className="hidden md:block"
           >
             <Button
-              content={"Sign In"}
+              content={"Iniciar sesión"}
               customCss={"max-w-max rounded-full"}
               icon={<FiLogIn />}
             />

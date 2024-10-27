@@ -11,10 +11,10 @@ const HomeCategories = ({ title, data, isLoading }) => {
       ) : (
         <section className="box mt-28 flex flex-col items-center gap-6">
           <div className="w-full flex justify-between items-center">
-            <h2 className="text-3xl font-bold capitalize">Latest {title}s</h2>
+            <h2 className="text-3xl font-bold capitalize">Últimos {title}s</h2>
             <Link to={"/recipe"}>
               <Button
-                content={"View More"}
+                content={"Ver Más"}
                 customCss={"rounded-lg text-sm"}
                 icon={<BsArrowUpRight />}
               />
@@ -33,7 +33,7 @@ const HomeCategories = ({ title, data, isLoading }) => {
               ))}
             </div>
           ) : (
-            <NoData text={"Data"} />
+            <NoData text={"Sin Datos"} />
           )}
         </section>
       )}

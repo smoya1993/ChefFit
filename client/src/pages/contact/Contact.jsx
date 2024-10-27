@@ -14,7 +14,7 @@ import useTitle from "../../hooks/useTitle";
 
 const Contact = () => {
   const user = useAuth();
-  useTitle("Recipen - Contact Us");
+  useTitle("Cheffit - Contact Us");
 
   const [formDetails, setFormDetails] = useState({
     firstName: "",
@@ -47,10 +47,10 @@ const Contact = () => {
           <h4 className="font-bold">Chat with us</h4>
           <p>Our team is here to help</p>
           <a
-            href="mailto:recipen@abc.com"
+            href="mailto:Cheffit@abc.com"
             className="font-semibold text-sm"
           >
-            recipen@abc.com
+            Cheffit@abc.com
           </a>
         </div>
         <div className="mb-5 flex flex-col gap-1">
@@ -70,7 +70,7 @@ const Contact = () => {
               className="hover:text-gray-500"
               whileHover={{ y: -4 }}
             >
-              <a href="https://github.com/Avinash905">
+              <a href="https://github.com">
                 <AiFillGithub />
               </a>
             </motion.li>
@@ -78,7 +78,7 @@ const Contact = () => {
               className="rounded-full hover:text-blue-400"
               whileHover={{ y: -4 }}
             >
-              <a href="https://twitter.com/avinashdunna">
+              <a href="https://twitter.com">
                 <AiFillTwitterCircle />
               </a>
             </motion.li>
@@ -86,7 +86,7 @@ const Contact = () => {
               className="rounded-full hover:text-blue-600"
               whileHover={{ y: -4 }}
             >
-              <a href="https://www.linkedin.com/in/dunna-avinash">
+              <a href="https://www.linkedin.com">
                 <AiFillLinkedin />
               </a>
             </motion.li>

@@ -12,7 +12,7 @@ const Message = ({ animation, loop }) => {
       />
       <Link to={"/"}>
         <Button
-          content={"Back to Home"}
+          content={"Vuelta al Inicio"}
           customCss={"max-w-max rounded-full"}
         />
       </Link>

@@ -17,7 +17,7 @@ const SignIn = () => {
   const [signIn, { isLoading }] = useSignInMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useTitle("Recipen - Sign In");
+  useTitle("Cheffit - Sign In");
 
   const handleChange = (e) => {
     setFormDetails({ ...formDetails, [e.target.id]: e.target.value });
@@ -53,10 +53,10 @@ const SignIn = () => {
         {/* Sign in form heading */}
         <div className="mt-12 mb-6 flex flex-col gap-3">
           <h2 className="text-center md:text-left font-bold text-3xl">
-            Welcome back
+            Bienvenido de nuevo
           </h2>
           <p className="text-center md:text-left text-sm">
-            New to Recipen?{" "}
+            New to Cheffit?{" "}
             <Link
               to={"/auth/signup"}
               className="text-primary font-semibold"
