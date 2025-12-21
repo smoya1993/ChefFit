@@ -13,15 +13,21 @@ const Home = () => {
     <>
       <Hero />
       <HomeCategories
-        title={"recipe"}
+        title="recipe"
         data={recipes?.data}
         isLoading={recipes?.isLoading}
       />
-      {!user?.roles?.some((role) => role === "ProUser" || role === "Admin") && (
-        <Subscribe />
+
+      {/* Aquí estaba el error */}
+      {!user?.roles?.some(
+        (role) => role === "ProUser" || role === "Admin"
+      ) && (
+        // <Subscribe />
+        null
       )}
+
       <HomeCategories
-        title={"blog"}
+        title="blog"
         data={blogs?.data}
         isLoading={blogs?.isLoading}
       />
