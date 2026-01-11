@@ -1,0 +1,22 @@
+services:
+  chef-front:
+    build:
+      context: ./client
+    container_name: chef-front
+    restart: unless-stopped
+    networks:
+      - cicd
+
+  chef-back:
+    build:
+      context: ./server
+    container_name: chef-back
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+    networks:
+      - cicd
+
+networks:
+  cicd:
+    external: true
