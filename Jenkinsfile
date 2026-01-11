@@ -13,16 +13,38 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
-        sh '''
-          set -e
-          docker compose -p ${COMPOSE_PROJECT_NAME} down || true
-          docker compose -p ${COMPOSE_PROJECT_NAME} up -d --build
-          docker compose -p ${COMPOSE_PROJECT_NAME} ps
-        '''
-      }
-    }
+  steps {
+    sh '''
+      set -euxo pipefail
+
+      echo "== PWD =="
+      pwd
+
+      echo "== LS =="
+      ls -la
+
+      echo "== LS client/server =="
+      ls -la client server || true
+
+      echo "== docker-compose.yml =="
+      cat docker-compose.yml || true
+
+      echo "== Docker info =="
+      docker version
+      docker compose version
+
+      echo "== Networks =="
+      docker network ls
+
+      echo "== DOWN =="
+      docker compose -p cheffit down || true
+
+      echo "== UP =="
+      docker compose -p cheffit up -d --build
+    '''
   }
+}
+
 
   post {
     always {
