@@ -14,6 +14,7 @@ services:
     restart: unless-stopped
     environment:
       - PORT=3000
+      - MONGO_URI=${MONGO_URI}
     networks:
       - cicd
 
