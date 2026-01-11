@@ -9,10 +9,10 @@ const mongoose = require("mongoose");
 const connectDB = require("./db/conn");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8085;
 
 // Configurar trust proxy para confiar en proxies y balanceadores de carga (como Render)
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 // cors middleware
 app.use(credentials);
