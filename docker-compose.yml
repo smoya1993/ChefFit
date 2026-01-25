@@ -14,7 +14,16 @@ services:
     restart: unless-stopped
     environment:
       - PORT=3000
-      - MONGO_URI=${MONGO_URI}
+      # PostgreSQL (preferred: single connection string)
+      - DATABASE_URL=${DATABASE_URL}
+      # JWT secrets (required)
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      # Client URL (used for Stripe redirect URLs)
+      - CLIENT_BASE_URL=${CLIENT_BASE_URL}
+      # Stripe (optional)
+      - STRIPE_KEY=${STRIPE_KEY}
+      - STRIPE_PRICE_ID=${STRIPE_PRICE_ID}
     networks:
       - cicd
 
