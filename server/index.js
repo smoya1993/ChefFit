@@ -5,7 +5,6 @@ const express = require("express");
 const errorHandler = require("./middleware/errorHandler");
 const credentials = require("./middleware/credentials");
 const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
 const connectDB = require("./db/conn");
 
 const app = express();
@@ -35,9 +34,9 @@ app.use(errorHandler);
 
 connectDB()
   .then(() => {
-    console.log("Connected to MongoDB");
+    console.log("Connected to PostgreSQL");
     app.listen(port, () => console.log(`Server running on port ${port}`));
   })
   .catch((err) => {
-    console.error(`Error connecting to MongoDB ${err}`);
+    console.error(`Error connecting to PostgreSQL ${err}`);
   });

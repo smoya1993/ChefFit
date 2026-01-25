@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+const { pool } = require("../db/pool");
 const jwt = require("jsonwebtoken");
 const Stripe = require("stripe");
 
@@ -25,31 +25,42 @@ const subscribe = async (req, res, next) => {
       cancel_url: `${process.env.CLIENT_BASE_URL}/payment-failed`,
     });
 
-    const foundUser = await User.findByIdAndUpdate(
-      req.user,
-      {
-        roles: {
-          BasicUser: 101,
-          ProUser: 102,
-        },
-      },
-      { new: true }
+    const found = await pool.query(
+      "SELECT id, name, email, profile_picture, roles, favorites FROM users WHERE id = $1",
+      [req.user]
     );
+    const existing = found.rows[0];
+
+    if (!existing) {
+      return res.sendStatus(401);
+    }
+
+    const roles = Array.isArray(existing.roles) ? existing.roles : ["BasicUser"];
+    const nextRoles = roles.includes("ProUser") ? roles : [...roles, "ProUser"];
+
+    const updated = await pool.query(
+      `
+        UPDATE users
+        SET roles = $2::text[], updated_at = now()
+        WHERE id = $1
+        RETURNING id, name, email, profile_picture, roles, favorites
+      `,
+      [req.user, nextRoles]
+    );
+    const foundUser = updated.rows[0];
     if (!foundUser) {
       return res.sendStatus(401);
     }
 
-    const roles = Object.values(foundUser.roles);
-
     const accessToken = jwt.sign(
       {
         UserInfo: {
-          userId: foundUser._id,
+          userId: foundUser.id,
           name: foundUser.name,
           email: foundUser.email,
-          profilePicture: foundUser.profilePicture,
-          roles: roles,
-          favorites: foundUser.favorites,
+          profilePicture: foundUser.profile_picture,
+          roles: foundUser.roles || ["BasicUser"],
+          favorites: foundUser.favorites || [],
         },
       },
       process.env.ACCESS_TOKEN_SECRET,

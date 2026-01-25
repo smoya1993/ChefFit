@@ -1,8 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials, logOut } from "../features/auth/authSlice";
+import { setCredentials } from "../features/auth/authSlice";
+
+const inferredBaseUrl =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:8085/api"
+    : undefined;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.VITE_SERVER_BASE_URL,
+  baseUrl: import.meta.env.VITE_SERVER_BASE_URL || inferredBaseUrl,
   credentials: "include",
 
   prepareHeaders: (headers, { getState }) => {
@@ -36,5 +41,5 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({}),
+  endpoints: () => ({}),
 });
