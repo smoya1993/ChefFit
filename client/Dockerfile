@@ -4,6 +4,8 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 
+# 👇 build-arg con valor por defecto (por si alguien no pasa nada)
+ARG VITE_SERVER_BASE_URL=http://chef-back.cheffit.duckdns.org/api
 ENV VITE_SERVER_BASE_URL=$VITE_SERVER_BASE_URL
 RUN npm run build
 
